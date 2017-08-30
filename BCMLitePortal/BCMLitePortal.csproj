@@ -202,6 +202,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\DefaultPlansApiController.cs" />
+    <Compile Include="Controllers\API\PlansApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -214,7 +215,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="DAL\BCMLitePortalContext.cs" />
-    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\DefaultCategory.cs" />
     <Compile Include="Models\DefaultPlan.cs" />
     <Compile Include="Models\DefaultStep.cs" />
@@ -235,6 +235,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\PlansViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

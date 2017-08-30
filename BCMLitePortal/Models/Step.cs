@@ -6,14 +6,21 @@ namespace BCMLitePortal.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    //Options for quote status
+    public enum Category
+    {
+        Respond, Recover, Resume
+    }
+
     [Table("bcp.Step")]
     public partial class Step
     {
+
         public int StepID { get; set; }
 
         public int DepartmentPlanID { get; set; }
 
-        public int Category { get; set; }
+        public Category Category { get; set; }
 
         public int? Number { get; set; }
 

@@ -16,6 +16,10 @@ namespace BCMLitePortal.Controllers.API
     public class DefaultPlansApiController : ApiController
     {
         private BCMLitePortalContext db = new BCMLitePortalContext();
+        public DefaultPlansApiController()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+        }
 
         // GET: api/DefaultPlansApi
         public IQueryable<DefaultPlan> GetDefaultPlans()
