@@ -1,0 +1,31 @@
+namespace BCMLitePortal.Models
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    [Table("bia.Application")]
+    public partial class Application
+    {
+        [Key]
+        public int ApplicationID { get; set; }
+
+        [StringLength(255)]
+        public string Name { get; set; }
+
+        [StringLength(500)]
+        public string Description { get; set; }
+
+        [StringLength(255)]
+        public string RTO { get; set; }
+
+        [StringLength(255)]
+        public string RPO { get; set; }
+
+        public int? ProcessID { get; set; }
+
+        public virtual Process Process { get; set; }
+    }
+}
