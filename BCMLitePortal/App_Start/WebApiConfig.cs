@@ -20,7 +20,7 @@ namespace BCMLitePortal
             // Indents Json response for better readability
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
-            //Remove if you need XML to be consumed
+            //Remove if you need XML to be consumed - 
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
             // Web API routes
