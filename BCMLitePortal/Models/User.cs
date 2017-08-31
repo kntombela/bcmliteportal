@@ -16,6 +16,8 @@ namespace BCMLitePortal.Models
         [StringLength(18)]
         public string Name { get; set; }
 
+        public string PasswordHash { get; set; }
+
         [StringLength(100)]
         public string Designation { get; set; }
 

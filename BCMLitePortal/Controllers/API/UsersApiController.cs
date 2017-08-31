@@ -32,7 +32,8 @@ namespace BCMLitePortal.Controllers.API
                 users.Add(new User
                 {
                     UserID = user.Id,
-                    Name = user.UserName
+                    Name = user.UserName,
+                    PasswordHash = user.PasswordHash
 
                 });
             }

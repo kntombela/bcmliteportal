@@ -3,7 +3,7 @@ namespace BCMLitePortal.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigrations : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -110,6 +110,7 @@ namespace BCMLitePortal.Migrations
                     {
                         UserID = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 18),
+                        PasswordHash = c.String(),
                         Designation = c.String(maxLength: 100),
                         Role = c.String(maxLength: 49),
                         Mobile = c.String(maxLength: 10),
@@ -201,16 +202,6 @@ namespace BCMLitePortal.Migrations
                 .Index(t => t.ProcessID);
             
             CreateTable(
-                "bcp.Category",
-                c => new
-                    {
-                        CategoryID = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 10),
-                        Desc = c.String(maxLength: 10),
-                    })
-                .PrimaryKey(t => t.CategoryID);
-            
-            CreateTable(
                 "bcp.DefaultCategories",
                 c => new
                     {
@@ -285,7 +276,6 @@ namespace BCMLitePortal.Migrations
             DropTable("bcp.DefaultPlans");
             DropTable("bcp.DefaultSteps");
             DropTable("bcp.DefaultCategories");
-            DropTable("bcp.Category");
             DropTable("bia.ThirdParty");
             DropTable("bia.Skill");
             DropTable("bia.Equipment");
