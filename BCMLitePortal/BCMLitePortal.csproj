@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\DefaultPlansApiController.cs" />
     <Compile Include="Controllers\API\PlansApiController.cs" />
+    <Compile Include="Controllers\API\UsersApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">

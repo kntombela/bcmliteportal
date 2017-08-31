@@ -16,11 +16,11 @@ namespace BCMLitePortal.ViewModels
         public Step Steps { get; set; }
         public PlanOwner PlanOwners { get; set; }
         public Process Processes { get; set; }
-        public ThirdParty ThirdParties { get; set; }
-        public Application Applications { get; set; }
-        public Equipment Equipment { get; set; }
-        public Document Documents { get; set; }
-        public Skill Skills { get; set; }
+        //public ThirdParty ThirdParties { get; set; }
+        //public Application Applications { get; set; }
+        //public Equipment Equipment { get; set; }
+        //public Document Documents { get; set; }
+        //public Skill Skills { get; set; }
 
     }
 }

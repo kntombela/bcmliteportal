@@ -28,11 +28,6 @@ namespace BCMLitePortal.Controllers.API
                    join d in db.Departments on dp.DepartmentID equals d.DepartmentID
                    join o in db.Organisations on d.OrganisationID equals o.OrganisationID
                    join p2 in db.Processes on d.DepartmentID equals p2.DepartmentID
-                   join e in db.Equipments on p2.ProcessID equals e.ProcessID
-                   join t in db.ThirdParties on p2.ProcessID equals t.ProcessID
-                   join d2 in db.Documents on p2.ProcessID equals d2.ProcessID
-                   join a in db.Applications on p2.ProcessID equals a.ProcessID
-                   join s2 in db.Skills on p2.ProcessID equals s2.ProcessID
                    select new PlansViewModel
                    {
                        Users = u,
@@ -42,12 +37,7 @@ namespace BCMLitePortal.Controllers.API
                        Plans = p,
                        Departments = d,
                        Organisations = o,
-                       Processes = p2,
-                       Equipment = e,
-                       ThirdParties = t,
-                       Documents = d2,
-                       Applications = a,
-                       Skills = s2
+                       Processes = p2
                    };
 
 
