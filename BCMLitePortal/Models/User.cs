@@ -13,7 +13,6 @@ namespace BCMLitePortal.Models
         public string UserID { get; set; }
 
         [Required]
-        [StringLength(18)]
         public string Name { get; set; }
 
         public string PasswordHash { get; set; }

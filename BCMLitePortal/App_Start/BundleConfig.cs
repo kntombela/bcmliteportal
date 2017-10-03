@@ -26,6 +26,12 @@ namespace BCMLitePortal
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                      "~/Scripts/angular.min.js",
+                      "~/Scripts/app/app.module.js",
+                      "~/Scripts/app/components/login/loginService.js",
+                      "~/Scripts/app/components/login/loginController.js"));
         }
     }
 }

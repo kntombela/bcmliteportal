@@ -1,44 +1,48 @@
-﻿@using BCMLitePortal.Models
-@model LoginViewModel
+﻿@*@using BCMLitePortal.Models
+@model LoginViewModel*@
 @{
     ViewBag.Title = "Log in";
 }
 
 <h2>@ViewBag.Title.</h2>
-<div class="row">
+<div class="row" ng-app="bcmApp" ng-controller="loginCtrl">
     <div class="col-md-8">
         <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
                 <h4>Use a local account to log in.</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <label>{{result}}</label>
+                <label ng-repeat="e in errors">{{e}}</label>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <label>Email</label>
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        <input type="text" class="form-control" ng-model="loginEmail"/>
+                        @*@Html.TextBoxFor(m => m.Email, new { htmlAttributes = new { @ng_model = "loginEmail",  @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <label>Password</label>
                     <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <input type="text" class="form-control" ng-model="loginPassword" />
+                        @*@Html.PasswordFor(m => m.Password, new { htmlAttributes = new { @ng_model = "loginPassword",  @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <button class="btn btn-default" ng-click="login()">Log in</button>  />
                     </div>
                 </div>
                 <p>
@@ -51,13 +55,11 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src=@Url.Content("~/Scripts/app/app.module.js")></script>
+    <script src=@Url.Content("~/Scripts/app/components/login/loginService.js")></script>
+    <script src=@Url.Content("~/Scripts/app/components/login/loginController.js")></script>
 }
