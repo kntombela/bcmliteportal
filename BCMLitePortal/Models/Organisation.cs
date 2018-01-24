@@ -23,5 +23,7 @@ namespace BCMLitePortal.Models
         public string Industry { get; set; }
  
         public virtual ICollection<Department> Departments { get; set; }
+
+        public virtual ICollection<Incident> Incidents { get; set; }
     }
 }

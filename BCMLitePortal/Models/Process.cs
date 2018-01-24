@@ -30,13 +30,19 @@ namespace BCMLitePortal.Models
         [StringLength(255)]
         public string RTO { get; set; }
 
+        public int? RTOValue { get; set; }
+
         public double? MBCO { get; set; }
 
         [StringLength(255)]
         public string OperationalImpact { get; set; }
 
+        public int OperationalImpactValue { get; set; }
+
         [StringLength(255)]
         public string FinancialImpact { get; set; }
+
+        public int FinancialImpactValue { get; set; }
 
         public double? StaffCompliment { get; set; }
 
@@ -51,6 +57,8 @@ namespace BCMLitePortal.Models
         public bool? RemoteWorking { get; set; }
 
         public bool? SiteDependent { get; set; }
+
+        public string Location { get; set; }
 
         public virtual ICollection<Document> Documents { get; set; }
 

@@ -22,3 +22,16 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Digispect corporate colors */
+.bg-digi-primary {
+    background-color: #607d8b;
+}
+
+.bg-digi-secondary {
+    background-color: #f7f7f9;
+}
+
+.bg-digi-accent {
+    background-color: #f7f7f9;
+}

@@ -27,11 +27,11 @@ namespace BCMLitePortal.Controllers.API
         // GET api/processes?planID=1
         [ResponseType(typeof(ProcessViewModel))]
         [Route("")]
-        public async Task<IHttpActionResult> getProcessesByPlanID(int planID)
+        public async Task<IHttpActionResult> getProcessesByPlanID(int departmentID)
         {
 
             var processes = await (from p in db.Processes
-                                   where  p.DepartmentID == planID
+                                   where  p.DepartmentID == departmentID
                                    select new ProcessViewModel
                                    {
                                        ProcessID = p.ProcessID,

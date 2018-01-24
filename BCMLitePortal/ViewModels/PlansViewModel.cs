@@ -12,7 +12,7 @@ namespace BCMLitePortal.ViewModels
         public string Description { get; set; }
         public string Type { get; set; }
         public bool? Invoked { get; set; }
-        public string Department { get; set; }
+        public string DepartmentName { get; set; }
         public int DepartmentID { get; set; }
 
     }

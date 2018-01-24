@@ -11,10 +11,11 @@ using System.Web.Http.Description;
 using BCMLitePortal.DAL;
 using BCMLitePortal.Models;
 using BCMLitePortal.ViewModels;
+using System.Threading.Tasks;
 
 namespace BCMLitePortal.Controllers.API
 {
-    [RoutePrefix("api/organisations")]
+    [RoutePrefix("api/organisation")]
     public class OrganisationsApiController : ApiController
     {
         private BCMLitePortalContext db = new BCMLitePortalContext();
@@ -26,7 +27,7 @@ namespace BCMLitePortal.Controllers.API
         //    return db.Organisations;
         //}
 
-        // GET: api/Organisation?userId=ioejds-190122
+        // GET: api/Organisation?userID=45391346-cdf4-49e0-8d7d-5014381a6516
         [ResponseType(typeof(OrganisationViewModel))]
         public IHttpActionResult GetOrganisationByUserId(string userId)
         {
@@ -62,6 +63,42 @@ namespace BCMLitePortal.Controllers.API
 
             return Ok(organisationViewModel);
 
+        }
+
+        // GET api/organisation/incidents?planId=1
+        [ResponseType(typeof(Incident))]
+        [Route("incidents")]
+        public async Task<IHttpActionResult> GetIncidents(int organisationId)
+        {
+
+            var incidents = await (from i in db.Incidents
+                                   join o in db.Organisations on i.OrganisationID equals o.OrganisationID
+                                   where o.OrganisationID == organisationId
+                                   select i).ToListAsync();
+
+            if (incidents == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(incidents);
+
+        }
+
+        // POST: api/organisation/incidents
+        [ResponseType(typeof(Incident))]
+        [Route("incidents")]
+        public IHttpActionResult PostIncident(Incident incident)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Incidents.Add(incident);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = incident.IncidentID }, incident);
         }
 
         // PUT: api/OrganisationsApi/5

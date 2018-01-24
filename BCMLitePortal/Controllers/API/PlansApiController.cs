@@ -43,7 +43,7 @@ namespace BCMLitePortal.Controllers.API
                                    Name = p.Name,
                                    Description = p.Description,
                                    Type = p.Type,
-                                   Department = d.Name,
+                                   DepartmentName = d.Name,
                                    DepartmentID = d.DepartmentID
                                }).ToListAsync();
 

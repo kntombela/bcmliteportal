@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BCMLitePortal.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,13 @@ namespace BCMLitePortal.Controllers
 {
     public class HomeController : Controller
     {
+        BCMLitePortalContext db = new BCMLitePortalContext();
+
         public ActionResult Index()
         {
+            ViewBag.NumberOfPlans = db.DepartmentPlans.Count();
+            ViewBag.NumberOfDepartments = db.Departments.Count();
+
             return View();
         }
 

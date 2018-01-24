@@ -17,6 +17,8 @@ namespace BCMLitePortal.Models
         [StringLength(255)]
         public string RTO { get; set; }
 
+        public int RTOValue { get; set; }
+
         public int? ProcessID { get; set; }
 
         public virtual Process Process { get; set; }
