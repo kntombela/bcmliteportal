@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "Scripts/sb-admin-charts.min.js",
+    "inputFiles": [
+      "Scripts/sb-admin-charts.js"
+    ]
+  }
+]

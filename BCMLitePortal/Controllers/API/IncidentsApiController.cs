@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using BCMLitePortal.DAL;
 using BCMLitePortal.Models;
+using BCMLitePortal.ViewModels;
 
 namespace BCMLitePortal.Controllers.API
 {
@@ -30,6 +31,42 @@ namespace BCMLitePortal.Controllers.API
         public IQueryable<Incident> GetIncidents(int organisationId)
         {
             return db.Incidents.Where(i => i.OrganisationID == organisationId);
+        }
+
+        // GET: api/organisations/1/incidents/summary/date
+        [Route("~/api/organisations/{organisationId:int}/incidents/summary/date")]
+        public IQueryable<IncidentDateSummaryViewModel> GetIncidentSummaryByDate(int organisationId)
+        {
+
+
+            var incidentSummary = from i in db.Incidents
+                                  where i.OrganisationID == organisationId
+                                  group i.IncidentID by i.Date.ToString() into g
+                                  select new IncidentDateSummaryViewModel
+                                  {
+                                      Date = g.Key,
+                                      Incidents = g.Count()
+                                  };
+  
+            //return db.Incidents.Where(i => i.OrganisationID == organisationId);
+
+            return incidentSummary;
+        }
+
+        // GET: api/organisations/1/incidents/summary/type
+        [Route("~/api/organisations/{organisationId:int}/incidents/summary/type")]
+        public IQueryable<IncidentTypeSummaryViewModel> GetIncidentSummaryByType(int organisationId)
+        {
+            var incidentSummary = from i in db.Incidents
+                                  where i.OrganisationID == organisationId
+                                  group i.IncidentID by i.Type into g
+                                  select new IncidentTypeSummaryViewModel
+                                  {
+                                      Type = g.Key,
+                                      Incidents = g.Count()
+                                  };
+
+            return incidentSummary;
         }
 
         // GET: api/incidents/1/details
@@ -141,5 +178,24 @@ namespace BCMLitePortal.Controllers.API
             return db.Incidents.Count(e => e.IncidentID == id) > 0;
         }
 
+        private string parseIncidentType(IncidentType? incidentType)
+        {
+            switch (incidentType)
+            {
+                case IncidentType.Facility:
+                    return "Building & Facility";
+                case IncidentType.HealthAndSafety:
+                    return "Health & Safety";
+                case IncidentType.Security:
+                    return "Security";
+                case IncidentType.InformationTechnology:
+                    return "Information Technology";
+                case IncidentType.Other:
+                    return "Other";
+                default:
+                    return "";
+
+            }
+        }
     }
 }

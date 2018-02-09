@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BCMLitePortal.Models.DefaultPlan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active">@ViewBag.Title</li>
+    </ol>
+
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        <!--Template Plan Cards-->
+        <div class="card mb-2">
+            <div class="card-header" role="tab" id="headingOne">
+                <h6 class="mb-0">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Template Plans
+                    </a>
+                </h6>
+            </div>
+            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block m-2">
+                    <div class="row">
+                        @foreach (var item in Model)
+            {
+                            <div class="col-xl-3 col-sm-6 mb-3">
+                                <div class="card" style="height: 20rem;">
+                                    <img class="card-img-top" src="~/Content/images/placeholder.jpg" alt="Card image cap" style="height: 10rem;">
+                                    <div class="card-block m-2">
+                                        <p class="small card-text text-truncate">@Html.DisplayFor(modelItem => item.Type)</p>
+                                        <h6 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h6>
+                                        <p class="small card-text text-truncate">@Html.DisplayFor(modelItem => item.Description)</p>
+                                        <a href="#" class="btn btn-primary">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Custom Plan Cards-->
+        <div class="card mb-2">
+            <div class="card-header" role="tab" id="headingTwo">
+                <h6 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Custom Plans
+                    </a>
+                </h6>
+            </div>
+            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="card-block m-2">
+                    <a href="@Url.Action("Create", "DefaultPlans")">
+                        <img src="~/Content/images/icons/ic_add_new.png" alt="Create New Plan" style="width:2rem;height:2rem;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

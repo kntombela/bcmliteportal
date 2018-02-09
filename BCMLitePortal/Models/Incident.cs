@@ -16,7 +16,7 @@ namespace BCMLitePortal.Models
         [Display(Name = "Information Technology")]
         InformationTechnology,
         Other
-    }
+}
 
     public class Incident
     {
@@ -24,6 +24,7 @@ namespace BCMLitePortal.Models
 
         public IncidentType? Type { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:D}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public string Description { get; set; }

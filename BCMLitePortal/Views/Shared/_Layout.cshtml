@@ -1,46 +1,40 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>BCMLite</title>
     <!-- Bootstrap core CSS-->
-    <link href="@Url.Content("~/vendor/bootstrap/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom fonts for this template-->
-    <link href="@Url.Content("~/vendor/font-awesome/css/font-awesome.min.css")" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Page level plugin CSS-->
-    <link href="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.css")" rel="stylesheet" type="text/css" />
+    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link href="@Url.Content("~/Content/sb-admin.css")" rel="stylesheet" type="text/css" />
-
-    <!-- Angularjs -->
-    @Scripts.Render("~/Scripts/angular.min.js")
+    <link href="~/Content/sb-admin.min.css" rel="stylesheet" />
 
 </head>
-<body class="fixed-nav sticky-footer bg-faded" id="page-top">
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand" href="#">BCMLite</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                    <a class="nav-link" href="@Url.Action("Index", "Home")">
-                        <i class="fa fa-fw fa-bar-chart"></i>
-                        <span class="nav-link-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Organisation">
-                    <a class="nav-link" href="@Url.Action("Index", "Organisations")">
-                        <i class="fa fa-fw fa-sitemap"></i>
-                        <span class="nav-link-text">Organisation</span>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Home">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-home"></i>
+                        <span class="nav-link-text">Home</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Plans">
-                    <a class="nav-link" href="@Url.Action("Index", "Plans")">
-                        <i class="fa fa-fw fa-list-alt"></i>
+                    <a class="nav-link" href="@Url.Action("Index", "DefaultPlans")">
+                        <i class="fa fa-fw fa-book"></i>
                         <span class="nav-link-text">Plans</span>
                     </a>
                 </li>
@@ -51,32 +45,37 @@
                     </a>
                     <ul class="sidenav-second-level collapse" id="collapseComponents">
                         <li>
-                            <a href="@Url.Action("Index", "People")">People</a>
+                            <a href="#">Applications</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Applications")">Applications</a>
+                            <a href="#">Skills</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Documents")">Documents</a>
+                            <a href="#">Third Parties</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "ThirdParties")">Suppliers</a>
+                            <a href="#">Equipment</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index", "Facilities")">Facilities</a>
+                            <a href="#">Documents</a>
                         </li>
                     </ul>
-                </li>
-                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="BattleBox">
-                    <a class="nav-link" href="@Url.Action("Index", "Battleboxes")">
-                        <i class="fa fa-fw fa-wrench"></i>
+                </li>              
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Battle Box">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-square"></i>
                         <span class="nav-link-text">Battle Box</span>
                     </a>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Governance">
-                    <a class="nav-link" href="@Url.Action("Index", "Governance")">
+                    <a class="nav-link" href="#">
                         <i class="fa fa-fw fa-university"></i>
                         <span class="nav-link-text">Governance</span>
+                    </a>
+                </li>
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Feedback">
+                    <a class="nav-link" href="#">
+                        <span class="nav-link-text">Feedback</span>
                     </a>
                 </li>
             </ul>
@@ -190,27 +189,37 @@
             </ul>
         </div>
     </nav>
-
+    
     <div class="content-wrapper">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Copyright © Digispect 2018</small>
+                </div>
+            </div>
         </footer>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="@Url.Content("~/vendor/jquery/jquery.min.js")"></script>
-    <script src="@Url.Content("~/vendor/bootstrap/js/bootstrap.bundle.min.js")"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="@Url.Content("~/vendor/jquery-easing/jquery.easing.min.js")"></script>
-    <!-- Page level plugin JavaScript-->
-    <script src="@Url.Content("~/vendor/chart.js/Chart.min.js")"></script>
-    <script src="@Url.Content("~/vendor/datatables/jquery.dataTables.js")"></script>
-    <script src="@Url.Content("~/vendor/datatables/dataTables.bootstrap4.js")"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="@Url.Content("~/Scripts/sb-admin.min.js")"></script>
-    <!-- Page level scripts-->
-    @RenderSection("scripts", required: false)
+        <!-- Bootstrap core JavaScript-->
+        <script src="~/vendor/jquery/jquery.min.js"></script>
+        <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="~/vendor/chart.js/Chart.min.js"></script>
+        <script src="~/vendor/datatables/jquery.dataTables.js"></script>
+        <script src="~/vendor/datatables/dataTables.bootstrap4.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="~/Scripts/sb-admin.min.js"></script>
+        <!-- Custom scripts for this page-->
+        <script src="~/Scripts/sb-admin-datatables.min.js"></script>
+        <script src="~/Scripts/sb-admin-charts.js"></script>
+
+        <!-- Page level scripts-->
+        @RenderSection("scripts", required: false)
+
+
 </body>
 </html>
