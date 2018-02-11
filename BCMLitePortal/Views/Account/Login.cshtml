@@ -1,65 +1,52 @@
-﻿@*@using BCMLitePortal.Models
-@model LoginViewModel*@
+﻿@using BCMLitePortal.Models
+@model LoginViewModel
 @{
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row" ng-app="bcmApp" ng-controller="loginCtrl">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm())
+@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <label>{{result}}</label>
-                <label ng-repeat="e in errors">{{e}}</label>
-                <div class="form-group">
-                    <label>Email</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" ng-model="loginEmail"/>
-                        @*@Html.TextBoxFor(m => m.Email, new { htmlAttributes = new { @ng_model = "loginEmail",  @class = "form-control" } })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })*@
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" ng-model="loginPassword" />
-                        @*@Html.PasswordFor(m => m.Password, new { htmlAttributes = new { @ng_model = "loginPassword",  @class = "form-control" } })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })*@
-                    </div>
-                </div>
-                @*<div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
-                    </div>
-                </div>*@
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button class="btn btn-default" ng-click="login()">Log in</button>  />
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                        </div>
+                        <div class="form-group">
+                                <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    }
+                </section>
+                <div class="text-center">
+                    <p>@Html.ActionLink("Register as a new user", "Register")</p>
+                    @*Enable this once you have account confirmation enabled for password reset functionality
+                    <p>@Html.ActionLink("Forgot your password?", "ForgotPassword")</p>*@
                 </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+            </div>
+        </div>
     </div>
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src=@Url.Content("~/Scripts/app/app.module.js")></script>
-    <script src=@Url.Content("~/Scripts/app/components/login/loginService.js")></script>
-    <script src=@Url.Content("~/Scripts/app/components/login/loginController.js")></script>
 }

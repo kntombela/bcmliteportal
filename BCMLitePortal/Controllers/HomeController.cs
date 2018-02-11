@@ -10,7 +10,8 @@ namespace BCMLitePortal.Controllers
     public class HomeController : Controller
     {
         BCMLitePortalContext db = new BCMLitePortalContext();
-
+            
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.NumberOfPlans = db.DepartmentPlans.Count();

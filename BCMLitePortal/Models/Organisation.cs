@@ -25,5 +25,7 @@ namespace BCMLitePortal.Models
         public virtual ICollection<Department> Departments { get; set; }
 
         public virtual ICollection<Incident> Incidents { get; set; }
+
+        //public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }

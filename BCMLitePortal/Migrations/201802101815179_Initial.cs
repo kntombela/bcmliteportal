@@ -8,17 +8,6 @@ namespace BCMLitePortal.Migrations
         public override void Up()
         {
             
-            CreateTable(
-                "dbo.Incident",
-                c => new
-                    {
-                        IncidentID = c.Int(nullable: false, identity: true),
-                        Type = c.String(),
-                        Date = c.DateTime(nullable: false),
-                        Description = c.String(),
-                        Location = c.String(),
-                    })
-                .PrimaryKey(t => t.IncidentID);
             
         }
         
@@ -31,6 +20,7 @@ namespace BCMLitePortal.Migrations
             DropForeignKey("bia.Equipment", "ProcessID", "bia.Process");
             DropForeignKey("bia.Document", "ProcessID", "bia.Process");
             DropForeignKey("bia.Process", "DepartmentID", "dbo.Department");
+            DropForeignKey("dbo.Incident", "OrganisationID", "dbo.Organisation");
             DropForeignKey("dbo.Department", "OrganisationID", "dbo.Organisation");
             DropForeignKey("bcp.Step", "DepartmentPlanID", "bcp.DepartmentPlan");
             DropForeignKey("bcp.PlanOwner", "UserID", "dbo.User");
@@ -44,6 +34,7 @@ namespace BCMLitePortal.Migrations
             DropIndex("bia.Skill", new[] { "ProcessID" });
             DropIndex("bia.Equipment", new[] { "ProcessID" });
             DropIndex("bia.Document", new[] { "ProcessID" });
+            DropIndex("dbo.Incident", new[] { "OrganisationID" });
             DropIndex("bcp.Step", new[] { "DepartmentPlanID" });
             DropIndex("bcp.PlanOwner", new[] { "DepartmentPlanID" });
             DropIndex("bcp.PlanOwner", new[] { "UserID" });
@@ -52,7 +43,6 @@ namespace BCMLitePortal.Migrations
             DropIndex("dbo.Department", new[] { "OrganisationID" });
             DropIndex("bia.Process", new[] { "DepartmentID" });
             DropIndex("bia.Application", new[] { "ProcessID" });
-            DropTable("dbo.Incident");
             DropTable("bcp.DefaultPlans");
             DropTable("bcp.DefaultSteps");
             DropTable("bcp.DefaultCategories");
@@ -60,6 +50,7 @@ namespace BCMLitePortal.Migrations
             DropTable("bia.Skill");
             DropTable("bia.Equipment");
             DropTable("bia.Document");
+            DropTable("dbo.Incident");
             DropTable("dbo.Organisation");
             DropTable("bcp.Step");
             DropTable("dbo.User");

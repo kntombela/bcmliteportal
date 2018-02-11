@@ -203,7 +203,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\API\AccountController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\ApplicationsApiController.cs" />
     <Compile Include="Controllers\API\DocumentsApiController.cs" />
     <Compile Include="Controllers\API\EquipmentApiController.cs" />
@@ -217,33 +217,14 @@
     <Compile Include="Controllers\API\UsersApiController.cs" />
     <Compile Include="Controllers\DefaultPlansController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Filters\RequireHttpsAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711212244349_Initial.cs" />
-    <Compile Include="Migrations\201711212244349_Initial.Designer.cs">
-      <DependentUpon>201711212244349_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711212257099_AddIncidentOrganisationRelationship.cs" />
-    <Compile Include="Migrations\201711212257099_AddIncidentOrganisationRelationship.Designer.cs">
-      <DependentUpon>201711212257099_AddIncidentOrganisationRelationship.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711222238582_AddValueFieldForRTO.cs" />
-    <Compile Include="Migrations\201711222238582_AddValueFieldForRTO.Designer.cs">
-      <DependentUpon>201711222238582_AddValueFieldForRTO.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711232209508_AddIncidentTypeEnum.cs" />
-    <Compile Include="Migrations\201711232209508_AddIncidentTypeEnum.Designer.cs">
-      <DependentUpon>201711232209508_AddIncidentTypeEnum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711232231523_IncidentTypeEnum.cs" />
-    <Compile Include="Migrations\201711232231523_IncidentTypeEnum.Designer.cs">
-      <DependentUpon>201711232231523_IncidentTypeEnum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712091958472_ProcessRTOValueNullable.cs" />
-    <Compile Include="Migrations\201712091958472_ProcessRTOValueNullable.Designer.cs">
-      <DependentUpon>201712091958472_ProcessRTOValueNullable.cs</DependentUpon>
+    <Compile Include="Migrations\201802101815179_Initial.cs" />
+    <Compile Include="Migrations\201802101815179_Initial.Designer.cs">
+      <DependentUpon>201802101815179_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -259,7 +240,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Incident.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Navbar.cs" />
     <Compile Include="Models\Organisation.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\PlanOwner.cs" />
@@ -270,7 +250,6 @@
     <Compile Include="Models\ThirdParty.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\IncidentSummaryViewModels.cs" />
@@ -285,6 +264,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\icons\ic_add_new.png" />
+    <Content Include="Content\images\img_home_header.jpg" />
+    <Content Include="Content\images\img_plan_workflow.png" />
     <Content Include="Content\images\placeholder.jpg" />
     <Content Include="Content\sb-admin.css" />
     <Content Include="Content\sb-admin.min.css" />
@@ -309,6 +290,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jumbotron-parallax.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -418,6 +400,7 @@
     <Content Include="Views\DefaultPlans\Details.cshtml" />
     <Content Include="Views\DefaultPlans\Edit.cshtml" />
     <Content Include="Views\DefaultPlans\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -426,23 +409,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711212244349_Initial.resx">
-      <DependentUpon>201711212244349_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711212257099_AddIncidentOrganisationRelationship.resx">
-      <DependentUpon>201711212257099_AddIncidentOrganisationRelationship.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711222238582_AddValueFieldForRTO.resx">
-      <DependentUpon>201711222238582_AddValueFieldForRTO.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711232209508_AddIncidentTypeEnum.resx">
-      <DependentUpon>201711232209508_AddIncidentTypeEnum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711232231523_IncidentTypeEnum.resx">
-      <DependentUpon>201711232231523_IncidentTypeEnum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712091958472_ProcessRTOValueNullable.resx">
-      <DependentUpon>201712091958472_ProcessRTOValueNullable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802101815179_Initial.resx">
+      <DependentUpon>201802101815179_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
