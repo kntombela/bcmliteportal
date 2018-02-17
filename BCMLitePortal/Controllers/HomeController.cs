@@ -1,4 +1,5 @@
 ﻿using BCMLitePortal.DAL;
+using BCMLitePortal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,22 @@ namespace BCMLitePortal.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult OrganisationDetails()
+        {
+            //return PartialView("_OrganisationDetails", new Organisation());
+            return View();
+        }
+
+        public ActionResult PlanDetails()
+        {
+            return View();
+        }
+
+        public ActionResult PlanResources()
+        {
             return View();
         }
     }

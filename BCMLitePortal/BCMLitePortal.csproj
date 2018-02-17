@@ -216,8 +216,12 @@
     <Compile Include="Controllers\API\ThirdPartiesApiController.cs" />
     <Compile Include="Controllers\API\UsersApiController.cs" />
     <Compile Include="Controllers\DefaultPlansController.cs" />
+    <Compile Include="Controllers\DepartmentPlansController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrganisationsController.cs" />
+    <Compile Include="Controllers\QuickStartController.cs" />
+    <Compile Include="Extentions\IdentityExtensions.cs" />
     <Compile Include="Filters\RequireHttpsAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -254,6 +258,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\IncidentSummaryViewModels.cs" />
     <Compile Include="ViewModels\LoginApiViewModel.cs" />
+    <Compile Include="ViewModels\OrganisationDetailsViewModel.cs" />
     <Compile Include="ViewModels\OrganisationViewModel.cs" />
     <Compile Include="ViewModels\PlanResourcesViewModel.cs" />
     <Compile Include="ViewModels\PlanStepsViewModel.cs" />
@@ -275,9 +280,16 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\components\organisation\organisationController.js" />
+    <Content Include="Scripts\app\components\organisation\organisationModel.js" />
+    <Content Include="Scripts\app\components\organisation\organisationService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="bundleconfig.json" />
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -290,8 +302,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jumbotron-parallax.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\mutlistep-form.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sb-admin-charts.js" />
@@ -401,6 +413,22 @@
     <Content Include="Views\DefaultPlans\Edit.cshtml" />
     <Content Include="Views\DefaultPlans\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\Home\OrganisationDetails.cshtml" />
+    <Content Include="Views\Home\PlanDetails.cshtml" />
+    <Content Include="Views\Home\PlanResources.cshtml" />
+    <Content Include="Views\Organisations\Create.cshtml" />
+    <Content Include="Views\Organisations\Delete.cshtml" />
+    <Content Include="Views\Organisations\Details.cshtml" />
+    <Content Include="Views\Organisations\Edit.cshtml" />
+    <Content Include="Views\Organisations\Index.cshtml" />
+    <Content Include="Views\DepartmentPlans\Create.cshtml" />
+    <Content Include="Views\DepartmentPlans\Delete.cshtml" />
+    <Content Include="Views\DepartmentPlans\Details.cshtml" />
+    <Content Include="Views\DepartmentPlans\Edit.cshtml" />
+    <Content Include="Views\DepartmentPlans\Index.cshtml" />
+    <Content Include="Views\QuickStart\Index.cshtml" />
+    <Content Include="Views\QuickStart\OrganisationDetails.cshtml" />
+    <Content Include="Views\QuickStart\PlanDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,8 +11,9 @@
     <!-- Page level plugin CSS-->
     <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link href="~/Content/sb-admin.min.css" rel="stylesheet" />
-    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/sb-admin.min.css" rel="stylesheet" />   
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
     <!-- Navigation-->
@@ -26,6 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 @Html.Partial("_LoginPartial")
+            </ul>
         </div>
     </nav>
     <hr />

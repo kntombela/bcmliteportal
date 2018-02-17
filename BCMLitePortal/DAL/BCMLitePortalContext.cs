@@ -32,6 +32,7 @@ namespace BCMLitePortal.DAL
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<PlanOwner> PlanOwners { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
+        public object Organisation { get; internal set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

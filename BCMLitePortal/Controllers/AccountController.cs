@@ -155,7 +155,6 @@ namespace BCMLitePortal.Controllers
                     Name = model.Name,
                     Surname = model.Surname,
                     Designation = model.Designation,
-                    OrganisationID = model.OrganisationID,
                     UserName = model.Email,
                     Email = model.Email
                 };

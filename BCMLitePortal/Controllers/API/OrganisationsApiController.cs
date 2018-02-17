@@ -20,12 +20,41 @@ namespace BCMLitePortal.Controllers.API
     {
         private BCMLitePortalContext db = new BCMLitePortalContext();
 
-        // GET: api/Organisation
-        //[Route("")]
-        //public IQueryable<Organisation> GetOrganisations()
-        //{
-        //    return db.Organisations;
-        //}
+        
+        [Route("{organisationId:int}")]
+        [ResponseType(typeof(OrganisationViewModel))]
+        public IHttpActionResult GetOrganisationById(int organisationId)
+        {
+            //Return organisation json with the number of plans created
+            var organisationViewModel = (from o in db.Organisations
+                                         join d in db.Departments on o.OrganisationID equals d.OrganisationID
+                                         join dp in db.DepartmentPlans on d.DepartmentID equals dp.DepartmentID                                        
+                                         where o.OrganisationID == organisationId
+                                         group d by new
+                                         {
+
+                                             d.Organisation.Name,
+                                             d.Organisation.Type,
+                                             d.Organisation.Industry
+
+                                         } into g
+                                         select new OrganisationViewModel
+                                         {
+
+                                             Name = g.Key.Name,
+                                             Industry = g.Key.Industry,
+                                             Type = g.Key.Type,
+                                             NumberOfPlans = g.Count()
+
+                                         });
+
+            if (organisationViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(organisationViewModel);
+        }
 
         // GET: api/Organisation?userID=45391346-cdf4-49e0-8d7d-5014381a6516
         [ResponseType(typeof(OrganisationViewModel))]
@@ -65,42 +94,7 @@ namespace BCMLitePortal.Controllers.API
 
         }
 
-        // GET api/organisation/incidents?planId=1
-        [ResponseType(typeof(Incident))]
-        [Route("incidents")]
-        public async Task<IHttpActionResult> GetIncidents(int organisationId)
-        {
-
-            var incidents = await (from i in db.Incidents
-                                   join o in db.Organisations on i.OrganisationID equals o.OrganisationID
-                                   where o.OrganisationID == organisationId
-                                   select i).ToListAsync();
-
-            if (incidents == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(incidents);
-
-        }
-
-        // POST: api/organisation/incidents
-        [ResponseType(typeof(Incident))]
-        [Route("incidents")]
-        public IHttpActionResult PostIncident(Incident incident)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Incidents.Add(incident);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = incident.IncidentID }, incident);
-        }
-
+           
         // PUT: api/OrganisationsApi/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutOrganisation(int id, Organisation organisation)
@@ -136,7 +130,7 @@ namespace BCMLitePortal.Controllers.API
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/OrganisationsApi
+        // POST: api/organisation
         [ResponseType(typeof(Organisation))]
         public IHttpActionResult PostOrganisation(Organisation organisation)
         {

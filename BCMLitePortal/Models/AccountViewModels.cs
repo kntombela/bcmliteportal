@@ -75,13 +75,6 @@ namespace BCMLitePortal.Models
         public string Designation { get; set; }
 
         [Required]
-        public int OrganisationID { get; set; }
-
-        //public string OrganisationType { get; set; }
-
-        //public string OrganisationIndustry { get; set; }
-
-        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
