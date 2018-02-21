@@ -9,12 +9,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BCMLitePortal.Models;
+using BCMLitePortal.DAL;
 
 namespace BCMLitePortal.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private BCMLitePortalContext db = new BCMLitePortalContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -139,6 +141,7 @@ namespace BCMLitePortal.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            SetRoleDropdownList();
             return View();
         }
 
@@ -155,22 +158,24 @@ namespace BCMLitePortal.Controllers
                     Name = model.Name,
                     Surname = model.Surname,
                     Designation = model.Designation,
-                    UserName = model.Email,
+                    UserName = string.Concat(model.Name, " ", model.Surname),
                     Email = model.Email
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    //Assign Role to newly created user      
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     return RedirectToAction("Index", "Home");
                 }
+                SetRoleDropdownList();
                 AddErrors(result);
             }
 
@@ -485,6 +490,12 @@ namespace BCMLitePortal.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
+        }
+
+        public void SetRoleDropdownList()
+        {
+            ViewBag.UserRoles = new SelectList(db.Roles.Where(u => !u.Name.Contains("Admin"))
+                    .ToList(), "Name", "Name");
         }
         #endregion
     }

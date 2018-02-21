@@ -75,6 +75,10 @@ namespace BCMLitePortal.Models
         public string Designation { get; set; }
 
         [Required]
+        [Display(Name = "BCM Role")]
+        public string UserRoles { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

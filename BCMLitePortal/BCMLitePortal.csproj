@@ -250,6 +250,7 @@
     <Compile Include="Models\Incident.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Organisation.cs" />
+    <Compile Include="Models\PartialOrganisation.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\PlanOwner.cs" />
     <Compile Include="Models\Process.cs" />

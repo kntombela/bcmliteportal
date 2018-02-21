@@ -38,6 +38,14 @@ namespace BCMLitePortal.Controllers
         [Authorize]
         public ActionResult OrganisationDetails()
         {
+            //Create a new organisation by default
+            ViewBag.CreateNew = true;
+            if (IsAdminUser())
+            {
+                //Do not create a new organisation return a list of all organisations
+                ViewBag.CreateNew = false;
+                ViewBag.OrganisationID = new SelectList(db.Organisations, "OrganisationID", "Name");
+            }
             return View();
         }
 
@@ -49,19 +57,27 @@ namespace BCMLitePortal.Controllers
             if (nextBtn != null)
             {
                 if (ModelState.IsValid)
-                {
+                {   
                     //Create new organisation
                     db.Organisations.Add(organisation);
-                    await db.SaveChangesAsync();
                     //TODO: Add validation for user role, (access to all organisation vs single organisation)
-                    ////Get the currently logged on user 
+                    //Get the currently logged on user 
                     ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                    //Associate user with organisation
                     user.Organisations.Add(organisation);
+                    //Update database
                     await UserManager.UpdateAsync(user);
                     return View("Organogram");
                 }
             }
 
+            ViewBag.CreateNew = true;
+            if (IsAdminUser())
+            {
+                //Do not create a new organisation return a list of all organisations
+                ViewBag.CreateNew = false;
+                ViewBag.OrganisationID = new SelectList(db.Organisations, "OrganisationID", "Name");
+            }
             return View();
 
         }
@@ -79,7 +95,7 @@ namespace BCMLitePortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Organogram([Bind(Include = "DepartmentID,Name,Description,RevenueGenerating,Revenue,OrganisationID")] Department department, string prevBtn, string nextBtn)
         {
-            var organisation = getLastAddedOrganisation();
+            var organisation = GetLastAddedOrganisation();
             if (prevBtn != null)
             {
                 //Open previous view loaded with the recently added organisation              
@@ -102,7 +118,7 @@ namespace BCMLitePortal.Controllers
 
         public ActionResult PlanDetails()
         {
-            populateDepartmentListDropDown();
+            PopulateDepartmentListDropDown();
             return View();
         }
 
@@ -114,7 +130,7 @@ namespace BCMLitePortal.Controllers
             {
                 //Return to organogram
                 //Populate fields with last added department
-                var department = db.Departments.Where(d => d.OrganisationID == getLastAddedOrganisation().OrganisationID).Last();
+                var department = db.Departments.Where(d => d.OrganisationID == GetLastAddedOrganisation().OrganisationID).Last();
                 return View("Organogram", department);
             }
 
@@ -126,7 +142,7 @@ namespace BCMLitePortal.Controllers
             }
             //The model is invalid retry adding plan
             //Populate drop down list with departments of current user's organisation
-            populateDepartmentListDropDown();
+            PopulateDepartmentListDropDown();
             return View();
         }
 
@@ -135,19 +151,42 @@ namespace BCMLitePortal.Controllers
             return View();
         }
 
-        #region Private Methods
-        private Organisation getLastAddedOrganisation()
+        #region Helpers
+        private Organisation GetLastAddedOrganisation()
         {
             //return db.Organisations.Include(o => o.Users.Where(u => u.Id == User.Identity.GetUserId())).Last();
             return db.Organisations.Last();
         }
 
-        private void populateDepartmentListDropDown()
+        private void PopulateDepartmentListDropDown()
         {
             //Populate drop down list with departments of current user's organisation
             ViewBag.DepartmentID = new SelectList(db.Departments
-                .Where(d => d.OrganisationID == getLastAddedOrganisation()
+                .Where(d => d.OrganisationID == GetLastAddedOrganisation()
                 .OrganisationID), "DepartmentID", "Name");
+        }
+
+        public JsonResult IsOrganisationExist(string name)
+        {
+            //Check if the Organisation specified in the Parameter using the ANY extension method exists in the database.  
+            return Json(!db.Organisations.Any(x => x.Name == name), JsonRequestBehavior.AllowGet);
+        }
+
+        public Boolean IsAdminUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var s = UserManager.GetRoles(User.Identity.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
         }
         #endregion
     }

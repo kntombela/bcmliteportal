@@ -1,10 +1,13 @@
 namespace BCMLitePortal.Models
 {
+    using BCMLitePortal.DAL;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Linq;
+    using System.Web.Mvc;
 
     [Table("Organisation")]
     public partial class Organisation
@@ -32,4 +35,5 @@ namespace BCMLitePortal.Models
 
         public virtual ICollection<ApplicationUser> Users { get; set; }
     }
+
 }
