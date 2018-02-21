@@ -4,14 +4,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace BCMLitePortal.Models
 {
 
-    
-
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            Organisations = new HashSet<Organisation>();
+        }
+
         //Additional properties for profile data
         public string Name { get; set; }
 
@@ -23,9 +27,7 @@ namespace BCMLitePortal.Models
 
         public bool AuthorityToInvoke { get; set; }
 
-        public int OrganisationID { get; set; }
-
-        public virtual Organisation Organisation { get; set; }
+        public virtual ICollection<Organisation> Organisations { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -33,7 +35,6 @@ namespace BCMLitePortal.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             userIdentity.AddClaim(new Claim("Name", this.Name));
-            userIdentity.AddClaim(new Claim("OrganisationID", this.OrganisationID.ToString()));
 
             return userIdentity;
         }
@@ -46,9 +47,13 @@ namespace BCMLitePortal.Models
         {
         }
 
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+
+
     }
 }

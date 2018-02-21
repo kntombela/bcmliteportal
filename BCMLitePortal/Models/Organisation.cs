@@ -9,7 +9,11 @@ namespace BCMLitePortal.Models
     [Table("Organisation")]
     public partial class Organisation
     {
-        
+        public Organisation()
+        {
+            Users = new HashSet<ApplicationUser>();
+        }
+
         public int OrganisationID { get; set; }
 
         [Required]
@@ -26,6 +30,6 @@ namespace BCMLitePortal.Models
 
         public virtual ICollection<Incident> Incidents { get; set; }
 
-        //public virtual ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }

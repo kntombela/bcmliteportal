@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using BCMLitePortal.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BCMLitePortal.DAL
 {
 
-    public partial class BCMLitePortalContext : DbContext
+    public partial class BCMLitePortalContext : IdentityDbContext<ApplicationUser>
     {
         public BCMLitePortalContext()
             : base("name=BCMLitePortalContext")
@@ -32,11 +33,39 @@ namespace BCMLitePortal.DAL
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<PlanOwner> PlanOwners { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
-        public object Organisation { get; internal set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Organisations)
+                .WithMany(o => o.Users)
+                .Map(uc => uc.ToTable("OrganisationApplicationUsers"));
+
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(u => u.Organisations)
+            //    .WithMany(o => o.Users)
+            //    .Map(uc =>
+            //    {
+            //        uc.ToTable("ApplicationUserOrganisation");
+            //        uc.MapLeftKey("Id");
+            //        uc.MapRightKey("OrganisationID");
+            //    });
+
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<IdentityUserClaim>().HasKey<int>(l => l.Id).Map(c => c.ToTable("AspNetUserClaims"));
+            //modelBuilder.Entity<IdentityUser>().HasKey<string>(l => l.Id).Map(c => c.ToTable("AspNetUsers"));
+            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId).Map(c => c.ToTable("AspNetUserLogins"));
+            //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id).Map(c => c.ToTable("AspNetRoles"));
+            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId }).Map(c => c.ToTable("AspNetUserRoles"));
+
+            //modelBuilder.Entity<IdentityUser>().HasKey<string>(l => l.Id);
+            //modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            //modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            //modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+
         }
     }
 }

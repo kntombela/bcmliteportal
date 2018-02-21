@@ -1,6 +1,6 @@
 ﻿@model BCMLitePortal.Models.DefaultPlan
 
-<h2> Step 2: Create Plans</h2>
+<h2> Step 3: Create Plans</h2>
 
 @using (Html.BeginForm("PlanDetails", "QuickStart", FormMethod.Post))
 {
@@ -39,8 +39,8 @@
         </div>
     </div>
 
-    <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="submit" name="prevBtn" value='Previous' />
+    <input type="submit" value='Finish' />
 }
 
 @section Scripts {

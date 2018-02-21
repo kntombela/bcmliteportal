@@ -13,7 +13,7 @@ namespace BCMLitePortal.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201802101815179_Initial"; }
+            get { return "201802201217060_Initial"; }
         }
         
         string IMigrationMetadata.Source

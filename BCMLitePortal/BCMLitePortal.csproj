@@ -217,6 +217,7 @@
     <Compile Include="Controllers\API\UsersApiController.cs" />
     <Compile Include="Controllers\DefaultPlansController.cs" />
     <Compile Include="Controllers\DepartmentPlansController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganisationsController.cs" />
@@ -226,14 +227,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802101815179_Initial.cs" />
-    <Compile Include="Migrations\201802101815179_Initial.Designer.cs">
-      <DependentUpon>201802101815179_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201802201217060_Initial.cs" />
+    <Compile Include="Migrations\201802201217060_Initial.Designer.cs">
+      <DependentUpon>201802201217060_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="DAL\BCMLitePortalContext.cs" />
+    <Compile Include="Models\ApplicationRole.cs" />
+    <Compile Include="Models\ApplicationUserClaim.cs" />
+    <Compile Include="Models\ApplicationUserLogin.cs" />
+    <Compile Include="Models\ApplicationUserRole.cs" />
     <Compile Include="Models\DefaultCategory.cs" />
     <Compile Include="Models\DefaultPlan.cs" />
     <Compile Include="Models\DefaultStep.cs" />
@@ -416,11 +421,6 @@
     <Content Include="Views\Home\OrganisationDetails.cshtml" />
     <Content Include="Views\Home\PlanDetails.cshtml" />
     <Content Include="Views\Home\PlanResources.cshtml" />
-    <Content Include="Views\Organisations\Create.cshtml" />
-    <Content Include="Views\Organisations\Delete.cshtml" />
-    <Content Include="Views\Organisations\Details.cshtml" />
-    <Content Include="Views\Organisations\Edit.cshtml" />
-    <Content Include="Views\Organisations\Index.cshtml" />
     <Content Include="Views\DepartmentPlans\Create.cshtml" />
     <Content Include="Views\DepartmentPlans\Delete.cshtml" />
     <Content Include="Views\DepartmentPlans\Details.cshtml" />
@@ -429,6 +429,17 @@
     <Content Include="Views\QuickStart\Index.cshtml" />
     <Content Include="Views\QuickStart\OrganisationDetails.cshtml" />
     <Content Include="Views\QuickStart\PlanDetails.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\QuickStart\Organogram.cshtml" />
+    <Content Include="Views\Organisations\Create.cshtml" />
+    <Content Include="Views\Organisations\Delete.cshtml" />
+    <Content Include="Views\Organisations\Details.cshtml" />
+    <Content Include="Views\Organisations\Edit.cshtml" />
+    <Content Include="Views\Organisations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -437,8 +448,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802101815179_Initial.resx">
-      <DependentUpon>201802101815179_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802201217060_Initial.resx">
+      <DependentUpon>201802201217060_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
