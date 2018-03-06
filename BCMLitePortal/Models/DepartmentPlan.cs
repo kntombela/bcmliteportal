@@ -10,6 +10,11 @@ namespace BCMLitePortal.Models
     public partial class DepartmentPlan
     {
 
+        public DepartmentPlan()
+        {
+            Users = new HashSet<ApplicationUser>();
+        }
+
         public int DepartmentPlanID { get; set; }
 
         public int DepartmentID { get; set; }
@@ -22,7 +27,7 @@ namespace BCMLitePortal.Models
 
         public virtual Plan Plan { get; set; }
 
-        public virtual ICollection<PlanOwner> PlanOwners { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
 
         public virtual ICollection<Step> Steps { get; set; }
     }

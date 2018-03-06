@@ -57,42 +57,42 @@ namespace BCMLitePortal.Controllers.API
         }
 
         // GET: api/Organisation?userID=45391346-cdf4-49e0-8d7d-5014381a6516
-        [ResponseType(typeof(OrganisationViewModel))]
-        public IHttpActionResult GetOrganisationByUserId(string userId)
-        {
+        //[ResponseType(typeof(OrganisationViewModel))]
+        //public IHttpActionResult GetOrganisationByUserId(string userId)
+        //{
 
-            //Return the organisation user belongs to and the number of plans allocated to user
-            var organisationViewModel = (from o in db.Organisations
-                                         join d in db.Departments on o.OrganisationID equals d.OrganisationID
-                                         join dp in db.DepartmentPlans on d.DepartmentID equals dp.DepartmentID
-                                         join po in db.PlanOwners on dp.DepartmentPlanID equals po.DepartmentPlanID
-                                         where po.UserID == userId
-                                         group d by new
-                                         {
+        //    //Return the organisation user belongs to and the number of plans allocated to user
+        //    var organisationViewModel = (from o in db.Organisations
+        //                                 join d in db.Departments on o.OrganisationID equals d.OrganisationID
+        //                                 join dp in db.DepartmentPlans on d.DepartmentID equals dp.DepartmentID
+        //                                 join po in db.PlanOwners on dp.DepartmentPlanID equals po.DepartmentPlanID
+        //                                 where po.UserID == userId
+        //                                 group d by new
+        //                                 {
 
-                                             d.Organisation.Name,
-                                             d.Organisation.Type,
-                                             d.Organisation.Industry
+        //                                     d.Organisation.Name,
+        //                                     d.Organisation.Type,
+        //                                     d.Organisation.Industry
 
-                                         } into g
-                                         select new OrganisationViewModel
-                                         {
+        //                                 } into g
+        //                                 select new OrganisationViewModel
+        //                                 {
 
-                                             Name = g.Key.Name,
-                                             Industry = g.Key.Industry,
-                                             Type = g.Key.Type,
-                                             NumberOfPlans = g.Count()
+        //                                     Name = g.Key.Name,
+        //                                     Industry = g.Key.Industry,
+        //                                     Type = g.Key.Type,
+        //                                     NumberOfPlans = g.Count()
 
-                                         });
+        //                                 });
 
-            if (organisationViewModel == null)
-            {
-                return NotFound();
-            }
+        //    if (organisationViewModel == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(organisationViewModel);
+        //    return Ok(organisationViewModel);
 
-        }
+        //}
 
            
         // PUT: api/OrganisationsApi/5

@@ -26,35 +26,35 @@ namespace BCMLitePortal.Controllers.API
         }
 
         // GET api/plans?userID=45391346-cdf4-49e0-8d7d-5014381a6516
-        [Route("")]
-        [ResponseType(typeof(PlansViewModel))]
-        public async Task<IHttpActionResult> GetPlansByUserID(string userId)
-        {
+        //[Route("")]
+        //[ResponseType(typeof(PlansViewModel))]
+        //public async Task<IHttpActionResult> GetPlansByUserID(string userId)
+        //{
 
-            var plans = await (from u in db.Users
-                               join po in db.PlanOwners on u.UserID equals po.UserID
-                               join dp in db.DepartmentPlans on po.DepartmentPlanID equals dp.DepartmentPlanID
-                               join d in db.Departments on dp.DepartmentID equals d.DepartmentID
-                               join p in db.Plans on dp.PlanID equals p.PlanID
-                               where u.UserID == userId
-                               select new PlansViewModel
-                               {
-                                   ID = dp.DepartmentPlanID,
-                                   Name = p.Name,
-                                   Description = p.Description,
-                                   Type = p.Type,
-                                   DepartmentName = d.Name,
-                                   DepartmentID = d.DepartmentID
-                               }).ToListAsync();
+        //    var plans = await (from u in db.Users
+        //                       join po in db.PlanOwners on u.UserID equals po.UserID
+        //                       join dp in db.DepartmentPlans on po.DepartmentPlanID equals dp.DepartmentPlanID
+        //                       join d in db.Departments on dp.DepartmentID equals d.DepartmentID
+        //                       join p in db.Plans on dp.PlanID equals p.PlanID
+        //                       where u.UserID == userId
+        //                       select new PlansViewModel
+        //                       {
+        //                           ID = dp.DepartmentPlanID,
+        //                           Name = p.Name,
+        //                           Description = p.Description,
+        //                           Type = p.Type,
+        //                           DepartmentName = d.Name,
+        //                           DepartmentID = d.DepartmentID
+        //                       }).ToListAsync();
 
-            if (plans == null)
-            {
-                return NotFound();
-            }
+        //    if (plans == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(plans);
+        //    return Ok(plans);
 
-        }
+        //}
 
         // GET api/Plan/Steps?planId=1
         [ResponseType(typeof(PlanStepsViewModel))]

@@ -14,6 +14,7 @@ namespace BCMLitePortal.Models
         public ApplicationUser()
         {
             Organisations = new HashSet<Organisation>();
+            DepartmentPlans = new HashSet<DepartmentPlan>();
         }
 
         //Additional properties for profile data
@@ -28,6 +29,8 @@ namespace BCMLitePortal.Models
         public bool AuthorityToInvoke { get; set; }
 
         public virtual ICollection<Organisation> Organisations { get; set; }
+
+        public virtual ICollection<DepartmentPlan> DepartmentPlans { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

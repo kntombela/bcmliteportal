@@ -30,8 +30,6 @@ namespace BCMLitePortal.DAL
         public virtual DbSet<ThirdParty> ThirdParties { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Organisation> Organisations { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<PlanOwner> PlanOwners { get; set; }
         public virtual DbSet<Incident> Incidents { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
