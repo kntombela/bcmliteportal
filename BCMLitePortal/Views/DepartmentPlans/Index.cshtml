@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BCMLitePortal.Models.DepartmentPlan>
+﻿@model BCMLitePortal.ViewModels.OrganisationPlansViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -6,40 +6,77 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Department.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Plan.PlanAbbreviation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentPlanInvoked)
-        </th>
-        <th></th>
-    </tr>
+<div ng-app="plansApp" ng-controller="planCtrl">
+    <div class="form-group">
+        @Html.Label("Select Organisation", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("OrganisationID", null, htmlAttributes: new { @class = "form-control", ng_model = "organisationId", ng_change = "getPlans(organisationId)" })
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Plan.PlanAbbreviation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentPlanInvoked)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentPlanID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DepartmentPlanID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentPlanID })
-        </td>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                Organisation
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Plan Name
+            </th>
+            <th>
+                Plan Description
+            </th>
+            <th>
+                Plan Type
+            </th>
+            <th></th>
+        </tr>
+
+        <tr ng-repeat="x in plans">
+            <td>{{ x.name }}</td>
+            <td>{{ x.description }}</td>
+            <td>{{ x.type }}</td>
+            <td>{{ x.invoked }}</td>
+        </tr>
+
+        @*@foreach (var item in Model.Plans)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.OrganisationID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Plan.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Plan.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Plan.Type)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentPlanID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.DepartmentPlanID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.DepartmentPlanID })
+                    </td>
+                </tr>
+            }*@
+
+    </table>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/app/components/plans/plansModel.js")
+    @Scripts.Render("~/Scripts/app/components/plans/plansService.js")
+    @Scripts.Render("~/Scripts/app/components/plans/plansController.js")
 }
-
-</table>

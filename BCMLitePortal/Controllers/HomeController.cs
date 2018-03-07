@@ -15,14 +15,7 @@ namespace BCMLitePortal.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ViewBag.NumberOfPlans = db.DepartmentPlans.Count();
-            ViewBag.NumberOfDepartments = db.Departments.Count();
 
-            return View();
-        }
-
-        public ActionResult Login()
-        {
             return View();
         }
 
@@ -40,20 +33,6 @@ namespace BCMLitePortal.Controllers
             return View();
         }
 
-        public ActionResult OrganisationDetails()
-        {
-            //return PartialView("_OrganisationDetails", new Organisation());
-            return View();
-        }
-
-        public ActionResult PlanDetails()
-        {
-            return View();
-        }
-
-        public ActionResult PlanResources()
-        {
-            return View();
-        }
+        
     }
 }

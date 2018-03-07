@@ -292,9 +292,11 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\components\plans\plansModel.js" />
     <Content Include="Scripts\app\components\organisation\organisationController.js" />
-    <Content Include="Scripts\app\components\organisation\organisationModel.js" />
     <Content Include="Scripts\app\components\organisation\organisationService.js" />
+    <Content Include="Scripts\app\components\plans\plansController.js" />
+    <Content Include="Scripts\app\components\plans\plansService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="bundleconfig.json" />
@@ -382,7 +384,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="vendor\font-awesome\fonts\fontawesome-webfont.woff" />
@@ -422,9 +423,6 @@
     <Content Include="Views\DefaultPlans\Edit.cshtml" />
     <Content Include="Views\DefaultPlans\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutAccount.cshtml" />
-    <Content Include="Views\Home\OrganisationDetails.cshtml" />
-    <Content Include="Views\Home\PlanDetails.cshtml" />
-    <Content Include="Views\Home\PlanResources.cshtml" />
     <Content Include="Views\DepartmentPlans\Create.cshtml" />
     <Content Include="Views\DepartmentPlans\Delete.cshtml" />
     <Content Include="Views\DepartmentPlans\Details.cshtml" />

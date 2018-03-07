@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using BCMLitePortal.DAL;
 using BCMLitePortal.Models;
+using BCMLitePortal.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace BCMLitePortal.Controllers
 {
@@ -17,10 +19,26 @@ namespace BCMLitePortal.Controllers
         private BCMLitePortalContext db = new BCMLitePortalContext();
 
         // GET: DepartmentPlans
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var departmentPlans = db.DepartmentPlans.Include(d => d.Department).Include(d => d.Plan);
-            return View(await departmentPlans.ToListAsync());
+
+            //Get currently logged on user
+            var currentUser = User.Identity.GetUserId();
+
+            //if user is admin present a drop down list to select available organisations and associated plans
+            ViewBag.OrganisationID = new SelectList(db.Organisations, "OrganisationID", "Name");
+
+
+            //Get all plans available to user
+            var departmentPlans = new OrganisationPlansViewModel();
+            departmentPlans.Plans = db.DepartmentPlans
+                                        .Include(dp => dp.Plan)
+                                        .Include(dp => dp.Department)
+                                        .Include(dp => dp.Department.Organisation)
+                                        .Where(dp => dp.Department.Organisation.Users.Any(u => u.Id == currentUser));
+
+            return View(departmentPlans);
+
         }
 
         // GET: DepartmentPlans/Details/5

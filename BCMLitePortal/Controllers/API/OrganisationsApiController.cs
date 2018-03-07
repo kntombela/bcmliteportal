@@ -15,12 +15,33 @@ using System.Threading.Tasks;
 
 namespace BCMLitePortal.Controllers.API
 {
-    [RoutePrefix("api/organisation")]
+    [RoutePrefix("api/organisations")]
     public class OrganisationsApiController : ApiController
     {
         private BCMLitePortalContext db = new BCMLitePortalContext();
 
-        
+        [Route("")]
+        [ResponseType(typeof(OrganisationViewModel))]
+        public IHttpActionResult GetAllOrganisations()
+        {
+            var organisationViewModel = from o in db.Organisations
+                                        select new OrganisationViewModel
+                                        {
+                                            Name = o.Name,
+                                            Industry = o.Industry,
+                                            Type = o.Type,
+                                            NumberOfPlans = 0
+                                        };
+
+            if (organisationViewModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(organisationViewModel);
+        }
+
+
         [Route("{organisationId:int}")]
         [ResponseType(typeof(OrganisationViewModel))]
         public IHttpActionResult GetOrganisationById(int organisationId)

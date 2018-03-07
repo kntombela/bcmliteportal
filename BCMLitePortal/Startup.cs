@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(BCMLitePortal.Startup))]
+[assembly: OwinStartup(typeof(BCMLitePortal.Startup))]
 namespace BCMLitePortal
 {
     public partial class Startup
@@ -29,7 +29,7 @@ namespace BCMLitePortal
             {
 
                 // Create admin role  
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
+                var role = new IdentityRole()
                 {
                     Name = "Admin"
                 };
@@ -56,7 +56,7 @@ namespace BCMLitePortal
             // Create plan owner role  
             if (!roleManager.RoleExists("Plan Owner"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole()
+                var role = new IdentityRole()
                 {
                     Name = "Plan Owner"
                 };
@@ -67,7 +67,7 @@ namespace BCMLitePortal
             // Create general employee role  
             if (!roleManager.RoleExists("Employee"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Employee";
                 roleManager.Create(role);
 
